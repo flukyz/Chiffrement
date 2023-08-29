@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "function.h"
+#include "function.c"
 
 // Fonction pour lire le "perroquet" depuis un fichier
 void read_perroquet(char *perroquet, const char *filename) {
@@ -30,7 +32,7 @@ void encrypt_text(const char *source, const char *dest, const char *perroquet) {
 
     fclose(srcFile);
     fclose(destFile);
-    // Supprimer le fichier source.txt après le chiffrement
+    // Permet la suppression du fichier qui à été chiffré
     remove(source);
 }
 
@@ -41,16 +43,21 @@ int main() {
     // Menu utilisateur
     int choice;
     printf("1. Chiffrer le fichier source.txt\n");
-    printf("2. Quitter\n");
+    printf("2. Dechiffrer le fichier dest.crt\n");
+    printf("3. Quitter\n");
     printf("Votre choix: ");
     scanf("%d", &choice);
 
     switch (choice) {
     case 1:
         encrypt_text("source.txt", "dest.crt", perroquet);
-        printf("Le fichier a été chiffré et sauvegardé dans dest.crt\n");
+        printf("Le fichier a ete chiffre et sauvegarde dans dest.crt\n");
         break;
     case 2:
+        decrypt_text("dest.crt", "decrypted.txt", perroquet);
+        printf("Le fichier a ete déchiffre et sauvegarde dans decrypted.txt\n");
+        break;
+    case 3:
         printf("Au revoir!\n");
         break;
     default:
@@ -59,3 +66,4 @@ int main() {
 
     return 0;
 }
+
