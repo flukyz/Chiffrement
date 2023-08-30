@@ -20,7 +20,7 @@ void encrypt_text(const char *source, const char *dest, const char *perroquet) {
     FILE *srcFile = fopen(source, "r");
     FILE *destFile = fopen(dest, "w");
     if (srcFile == NULL || destFile == NULL) {
-        printf("Erreur lors de l'ouverture des fichiers.\n");
+        printf("Il faut creer le fichier source\n");
         exit(1);
     }
 
